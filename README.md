@@ -140,6 +140,7 @@ kql/
 
 .gitignore
 README.md
+README-setup.md
 ``` 
 
 - `infra/env/main.bicep` is the **single deployment entry point**
