@@ -21,7 +21,7 @@ The platform provisions and configures the following:
 - Regional Network Watcher enablement
 - Automation Account with operational runbooks
 - Logic App remediation workflow (optional)
-- Budget alert for cost monitoring (optional)
+- Budget threshold alert for cost awareness (optional)
 - Environment-isolated deployments (dev / prod)
 - Parameter-driven configuration with no hardcoded environments
 
@@ -65,13 +65,14 @@ flowchart LR
   end
 
   VM --> NSG
+  NSG --> Storage
   NSG --> LAW
   LAW --> Sentinel
   LAW --> Alerts
   Alerts --> AG
   AG --> LA
   Auto --> VM
-  Storage --> LAW
+  Storage -.-> LAW
   Budget --> AG
   NW --> NSG
 ```
@@ -277,6 +278,25 @@ Network Watcher is a regional platform dependency.
 It is deployed into a dedicated resource group and referenced by downstream telemetry components.
 
 This avoids coupling monitoring logic to workload resource groups.
+
+VM patching is implemented via tagged runbooks using Run Command for demonstration purposes and does not replace enterprise Update Management solutions.
+
+## Evidence and Validation
+
+Screenshots are stored in the `/screenshot` directory and named sequentially to reflect deployment order:
+
+- Baseline provisioning (Network Watcher): `01-baseline-NetworkWatcherRG.PNG`, `02-baseline-NetworkWatcher-resource.PNG`
+- Monitoring resource group creation: `03-dev-monitoringRG-overview.PNG`
+- Log Analytics workspace: `04-dev-LAW-overview.PNG`
+- Automation Account overview + identity: `05-dev-AutomationAccount-overview.PNG`, `06-dev-AutomationAccount-identity.PNG`
+- Action Group: `07-dev-ActionGroup-overview.PNG`, `19-dev-ActionGroup-webhook.PNG`
+- Runbooks + schedules: `08-dev-Runbooks-list.PNG`, `09-dev-Runbook-Shutdown-code.PNG`, `20-dev-RunbookSchedules-list.PNG`
+- VM provisioning + tags + shutdown: `10-dev-VM-overview.PNG`, `11-dev-VM-tags.PNG`, `12-dev-RunbookJob-Shutdown-success.PNG`, `13-dev-VM-powerstate-stopped.PNG`
+- Logic App remediation run: `14-dev-LogicApp-overview.PNG`, `15-dev-LogicApp-run-success-1.PNG`, `15-dev-LogicApp-run-success-2.PNG`, `16-dev-VM-restart-activitylog.PNG`
+- Budget + log alerting: `17-dev-BudgetAlert-overview.PNG`, `18-dev-LogAlert-rule.PNG`
+- Runbook job output: `21-dev-RunbookJob-output.PNG`
+- VNet baseline: `22-dev-VNet-overview.PNG`
+- Log Analytics query + Sentinel: `23-dev-LogAnalytics-query.PNG`, `24-dev-Sentinel-overview.PNG`
 
 ## What This Project Demonstrates
 
