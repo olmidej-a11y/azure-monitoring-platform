@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "westeurope"
+    },
+    "monitoringRgName": {
+      "value": "rg-monitoring-dev"
+    },
+    "workspaceName": {
+      "value": "law-monitoring-dev"
+    },
+    "retentionInDays": {
+      "value": 30
+    },
+    "tags": {
+      "value": {
+        "project": "layicorp-monitoring-platform",
+        "environment": "dev",
+        "owner": "security"
+      }
+    },
+
+    "nsgName": {
+      "value": "nsg-workload-dev"
+    },
+    "nsgResourceGroup": {
+      "value": "rg-workload-dev"
+    },
+
+    "flowLogStorageAccountName": {
+      "value": "monitoringlogsdev001"
+    },
+    "enableVnetFlowLogs": { "value": false },
+    "vnetResourceId": { "value": "" },
+    "enableVnetCreate": { "value": true },
+    "vnetResourceGroupName": { "value": "rg-network-dev" },
+    "vnetName": { "value": "vnet-hub-dev" },
+    "vnetAddressPrefix": { "value": "10.0.0.0/16" },
+    "vnetSubnetName": { "value": "default" },
+    "vnetSubnetPrefix": { "value": "10.0.0.0/24" },
+    "enableDevVm": { "value": false },
+    "devVmName": { "value": "vm-dev-demo" },
+    "devVmSize": { "value": "Standard_B1s" },
+    "devVmAdminUsername": { "value": "azureuser" },
+    "devVmAdminPublicKey": { "value": "" },
+    "devVmSubnetName": { "value": "default" },
+    "devVmTags": {
+      "value": {
+        "AutoShutdown": "true",
+        "PatchGroup": "prod"
+      }
+    },
+    "enableAutomation": { "value": true },
+    "automationAccountName": { "value": "aa-monitoring-dev" },
+    "targetVmResourceGroupName": { "value": "rg-workload-dev" },
+    "assignVmContributor": { "value": true },
+    "automationRoleAssignmentName": { "value": "" },
+
+    "actionGroupName": { "value": "ag-monitoring-dev" },
+    "emailReceiverAddress": { "value": "user@example.com" },
+    "logicAppTriggerUrl": { "value": "" },
+    "enableBudgetAlert": { "value": false },
+    "budgetName": { "value": "budget-monitoring-dev" },
+    "budgetAmount": { "value": 50 },
+    "budgetStartDate": { "value": "2025-12-01" },
+    "budgetEndDate": { "value": "2030-01-01" },
+
+    "enableLogicAppRemediation": { "value": false },
+    "logicAppName": { "value": "la-remediate-dev" },
+    "remediationTargetVmResourceId": { "value": "" }
+
+  }
+}
+

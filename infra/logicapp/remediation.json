@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.39.26.7824",
+      "templateHash": "6829303356900280609"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string"
+    },
+    "logicAppName": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": {}
+    },
+    "targetVmResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Target VM resourceId to restart, example: /subscriptions/.../resourceGroups/rg.../providers/Microsoft.Compute/virtualMachines/vmname"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Logic/workflows",
+      "apiVersion": "2019-05-01",
+      "name": "[parameters('logicAppName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "state": "Enabled",
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "targetVmResourceId": {
+              "type": "string",
+              "defaultValue": "[parameters('targetVmResourceId')]"
+            }
+          },
+          "triggers": {
+            "manual": {
+              "type": "Request",
+              "kind": "Http",
+              "inputs": {
+                "schema": {}
+              }
+            }
+          },
+          "actions": {
+            "RestartVM": {
+              "type": "Http",
+              "inputs": {
+                "method": "POST",
+                "uri": "[format('{0}{1}/restart?api-version=2024-03-01', environment().resourceManager, substring(parameters('targetVmResourceId'), 1))]",
+                "authentication": {
+                  "type": "ManagedServiceIdentity"
+                }
+              }
+            }
+          },
+          "outputs": {}
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "logicAppName": {
+      "type": "string",
+      "value": "[parameters('logicAppName')]"
+    },
+    "logicAppPrincipalId": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Logic/workflows', parameters('logicAppName')), '2019-05-01', 'full').identity.principalId]"
+    }
+  }
+}

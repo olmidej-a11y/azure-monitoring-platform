@@ -1,0 +1,4 @@
+incident-webhook.local.json
+**/*webhook*.local.json
+**/*secrets*.json
+infra/env/main.json

@@ -1,0 +1,5 @@
+AzureDiagnostics
+| where Category == "AzureFirewallNetworkRule"
+| where msg_s has "3389" or destinationPort_s == "3389"
+| summarize Attempts=count() by SourceIP_s, bin(TimeGenerated, 1h)
+| order by Attempts desc

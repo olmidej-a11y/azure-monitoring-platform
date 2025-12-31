@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "westeurope"
+    },
+    "monitoringRgName": {
+      "value": "rg-monitoring-prod"
+    },
+    "workspaceName": {
+      "value": "law-monitoring-prod"
+    },
+    "retentionInDays": {
+      "value": 90
+    },
+    "tags": {
+      "value": {
+        "project": "layicorp-monitoring-platform",
+        "environment": "prod",
+        "owner": "security"
+      }
+    },
+
+    "nsgName": {
+      "value": "nsg-workload-prod"
+    },
+    "nsgResourceGroup": {
+      "value": "rg-workload-prod"
+    },
+
+    "flowLogStorageAccountName": {
+      "value": "monitoringlogsprod001"
+    },
+    "logicAppTriggerUrl": { "value": "" },
+    "enableBudgetAlert": { "value": false },
+    "budgetName": { "value": "budget-monitoring-prod" },
+    "budgetAmount": { "value": 200 },
+    "budgetStartDate": { "value": "2025-12-01" },
+    "budgetEndDate": { "value": "2030-01-01" },
+    "enableVnetFlowLogs": { "value": false },
+    "vnetResourceId": { "value": "" },
+    "enableVnetCreate": { "value": true },
+    "vnetResourceGroupName": { "value": "rg-network-prod" },
+    "vnetName": { "value": "vnet-hub-prod" },
+    "vnetAddressPrefix": { "value": "10.0.0.0/16" },
+    "vnetSubnetName": { "value": "default" },
+    "vnetSubnetPrefix": { "value": "10.0.0.0/24" },
+    "enableDevVm": { "value": false },
+    "devVmName": { "value": "vm-prod-demo" },
+    "devVmSize": { "value": "Standard_B1s" },
+    "devVmAdminUsername": { "value": "azureuser" },
+    "devVmAdminPublicKey": { "value": "" },
+    "devVmSubnetName": { "value": "default" },
+    "devVmTags": {
+      "value": {
+        "AutoShutdown": "true",
+        "PatchGroup": "prod"
+      }
+    },
+    "enableAutomation": { "value": true },
+    "automationAccountName": { "value": "aa-monitoring-prod" },
+    "targetVmResourceGroupName": { "value": "rg-workload-prod" },
+    "actionGroupName": { "value": "ag-monitoring-prod" },
+    "emailReceiverAddress": { "value": "user@example.com" },
+    "enableLogicAppRemediation": { "value": false },
+    "logicAppName": { "value": "la-remediate-prod" },
+    "remediationTargetVmResourceId": { "value": "" },
+    "assignVmContributor": { "value": true },
+    "automationRoleAssignmentName": { "value": "" }
+  }
+}

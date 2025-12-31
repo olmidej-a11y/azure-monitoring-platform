@@ -1,0 +1,5 @@
+AzureDiagnostics
+| where Category in ("AzureFirewallNetworkRule","AzureFirewallApplicationRule","AzureFirewallNatRule")
+| where action_s == "Deny" or msg_s has "Deny"
+| summarize Denies=count() by bin(TimeGenerated, 1h)
+| order by TimeGenerated desc

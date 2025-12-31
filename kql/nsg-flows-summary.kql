@@ -1,0 +1,3 @@
+AzureNetworkAnalytics_CL
+| summarize FlowCount=count() by Subnet_s, Direction_s, bin(TimeGenerated, 1h)
+| order by TimeGenerated desc
