@@ -2,12 +2,21 @@
 
 ## Overview
 
-This project implements a foundational Azure monitoring and security observability platform using Infrastructure as Code with Azure Bicep.
+This project implements an enterprise-style Azure monitoring and security observability platform using Infrastructure as Code (Bicep), centralising logs, security signals, and alerting for Azure workloads.
 
-The goal is to establish a reusable monitoring landing zone that centralizes logs, security signals, and alerting for Azure workloads.  
+The goal is to provide a reusable monitoring landing zone that enables consistent observability and security visibility across Azure workloads.
+
 The design follows real-world platform engineering patterns used by cloud and security teams, with strict separation between configuration and code, environment-based deployments, and scoped resource ownership.
 
 This monitoring platform is designed to **augment existing infrastructure** by providing visibility, not to replace workload deployments.
+
+---
+
+## Why This Matters
+
+Without centralized monitoring and observability, cloud environments lack visibility into security events, network activity, and operational issues.
+
+This project demonstrates how Azure monitoring foundations can be designed to provide consistent, scalable, and secure observability across workloads.
 
 ---
 
@@ -312,6 +321,16 @@ Screenshots are stored in the `/screenshot` directory and named sequentially to 
 
 This project is intended to reflect how monitoring foundations are built and managed in real Azure environments.
 
+## Impact
+
+- Centralised logging and security monitoring across Azure resources  
+- Enabled proactive detection of network and security anomalies using Sentinel and KQL  
+- Implemented reusable monitoring foundation using Infrastructure as Code  
+- Demonstrated platform-level observability aligned with real-world cloud architecture patterns
+
+This project demonstrates how Azure monitoring foundations can be designed as reusable, scalable platforms rather than ad-hoc configurations.
+
+
 ## Future Enhancements
 
 - VNet Traffic Analytics enrichment
@@ -326,6 +345,6 @@ This project is intended to reflect how monitoring foundations are built and man
 
 ## Summary
 
-This repository implements a reusable Azure monitoring landing zone that provides centralized visibility, security analytics, and alerting for cloud workloads.
+This project reflects how monitoring and security observability are implemented in real Azure environments, using Infrastructure as Code, modular design, and environment-safe deployments to build scalable platform foundations.
 
 The architecture prioritizes correctness, scalability, and operational realism over unnecessary complexity, making it suitable as both a learning reference and a portfolio-quality platform project.
